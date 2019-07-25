@@ -22,6 +22,11 @@ class CoinList extends Component {
     this.props.fetchCoins();
   }
 
+  filteredList() {
+    return this.props.list.filter((item) => {
+      return item.name.indexOf(this.props.filter) >= 0;
+    });
+  }
   keyExtractor = (item) => item.id.toString();
   renderItem = ({ item }) => (<CoinListItem item={item} />)
   
@@ -29,7 +34,7 @@ class CoinList extends Component {
     return (
       <FlatList
           keyExtractor={this.keyExtractor}
-          data={this.props.list}
+          data={this.filteredList()} // data={this.props.list} 
           renderItem={this.renderItem}
       />
     );
@@ -43,7 +48,8 @@ class CoinList extends Component {
     isLoading: state.isLoading
   };
 }; */
-const mapStateToProps = ({ list, hasError, isLoading }) => ({ list, hasError, isLoading });
+const mapStateToProps = 
+  ({ list, hasError, isLoading, filter }) => ({ list, hasError, isLoading, filter });
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {

@@ -29,6 +29,11 @@ export const setFetchedList = (list) => ({
     list
 });
 
+export const setFilter = (filter) => ({
+    type: types.SET_FILTER,
+    filter: filter
+});
+
 /* Thunk Action creator */
 export const fetchCoins = () => async (dispatch) => {
         dispatch(fetchHasError(false));
