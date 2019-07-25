@@ -4,9 +4,9 @@ import { fetchHasError, isloadingData, setFetchedList } from '../store/reducers'
 
 
 const rootReducer = combineReducers({
-    setFetchedList,
-    fetchHasError,
-    isloadingData
+    list: setFetchedList,
+    hasError: fetchHasError,
+    isLoading: isloadingData
 });
 
 export default createStore(
