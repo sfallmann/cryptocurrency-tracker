@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FlatList } from 'react-native';
+import { FlatList, Text } from 'react-native';
 import CoinListItem from './CoinListItem';
 //import coinlist from './list';
 import * as actions from '../store/actions/creator';
@@ -22,15 +22,40 @@ class CoinList extends Component {
     this.props.fetchCoins();
   }
 
-  filteredList() {
+/*   filteredList() {
     return this.props.list.filter((item) => {
       return item.name.indexOf(this.props.filter) >= 0;
     });
+  } */
+  filteredList() {
+    const filterFn = item => item.name.toLowerCase().includes(this.props.filter.toLowerCase());
+    return this.props.list.filter(filterFn);
   }
-  keyExtractor = (item) => item.id.toString();
-  renderItem = ({ item }) => (<CoinListItem item={item} />)
   
+  keyExtractor = (item) => item.id.toString()
+
+  renderItem = ({ item }) => (<CoinListItem item={item} />)
+
+  renderList() {
+    const filteredList = this.filteredList();
+
+    if (filteredList.length) {
+      return (
+        <FlatList
+            keyExtractor={this.keyExtractor}
+            data={filteredList} // data={this.props.list} 
+            renderItem={this.renderItem}
+        />
+      );      
+    }
+    
+    return <Text>No items to display</Text>;
+  }
+
   render() {
+    return this.renderList();
+  }
+/*   render() {
     return (
       <FlatList
           keyExtractor={this.keyExtractor}
@@ -38,7 +63,7 @@ class CoinList extends Component {
           renderItem={this.renderItem}
       />
     );
-  }
+  } */
 }
 
 /* const mapStateToProps = (state) => {
