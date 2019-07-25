@@ -10,6 +10,12 @@ const priceSortedList = () => coinlist.sort((a, b) => {
   });
 
 export default class CoinList extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.keyExtractor = this.keyExtractor.bind(this);
+  // }
+
+  // keyExtractor(item) { return item.id.toString(); }  
 
   keyExtractor = (item) => item.id.toString();
   renderItem = ({ item }) => (<CoinListItem item={item} />)
