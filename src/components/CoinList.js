@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FlatList, Text } from 'react-native';
 import CoinListItem from './CoinListItem';
-//import coinlist from './list';
 import * as actions from '../store/actions/creator';
 
 // const priceSortedList = () => coinlist.sort((a, b) => {
@@ -27,9 +26,17 @@ class CoinList extends Component {
       return item.name.indexOf(this.props.filter) >= 0;
     });
   } */
+
+  sortFn(a, b) {
+    const aPrice = Number.parseFloat(a.priceUsd);
+    const bPrice = Number.parseFloat(b.priceUsd);
+
+    return bPrice - aPrice;
+  }
+
   filteredList() {
     const filterFn = item => item.name.toLowerCase().includes(this.props.filter.toLowerCase());
-    return this.props.list.filter(filterFn);
+    return this.props.list.filter(filterFn).sort(this.sortFn);
   }
   
   keyExtractor = (item) => item.id.toString()
