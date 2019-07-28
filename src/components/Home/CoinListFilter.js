@@ -3,14 +3,16 @@ import { Input, SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { setFilter } from '../../store/actions/creator';
  
-const _CoinListFilter = (props) => (
-    <SearchBar
+const _CoinListFilter = (props) => 
+  props.isFilterShowing
+    ? (<SearchBar
         placeholder='Enter filter value' 
         value={props.filter}
         onChangeText={props.setFilter}
         searchIcon={{ type: 'feather', name: 'filter' }}
-    />
-);
+    />)
+    : null;
+
 
 const styles = {
   container: {
@@ -29,7 +31,8 @@ const styles = {
 }
 
 const mapStatetoProps = (state) => ({
-    filter: state.filter
+    filter: state.filter,
+    isFilterShowing: state.isFilterShowing,
 });
 
 const mapDispatchtoProps = (dispatch) => ({

@@ -24,6 +24,12 @@ export const isloadingData = (isLoading) => ({
     isLoading
 });
 
+export const toggleFilterVisibility = () => {
+  return  {
+    type: types.FILTER_IS_SHOWING
+  }
+};
+
 export const setFetchedList = (list) => ({
     type: types.ITEMS_FETCH_DATA_SUCCESS,
     list
