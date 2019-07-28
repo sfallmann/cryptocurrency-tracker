@@ -1,20 +1,14 @@
 import React from 'react';
-import { Input } from 'react-native-elements';
+import { Input, SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { setFilter } from '../store/actions/creator';
+import { setFilter } from '../../store/actions/creator';
  
-const CoinListFilter = (props) => (
-    <Input 
+const _CoinListFilter = (props) => (
+    <SearchBar
         placeholder='Enter filter value' 
         value={props.filter}
         onChangeText={props.setFilter}
-        containerStyle={styles.container}
-        inputContainerStyle={styles.inputContainer}
-        leftIcon={{ type: 'feather', name: 'filter' }}
-        leftIconContainerStyle={styles.leftIconContainer}
-        autoCapitalize='none'
-        autoCompleteType='off'
-        autoCorrect={false}
+        searchIcon={{ type: 'feather', name: 'filter' }}
     />
 );
 
@@ -42,4 +36,5 @@ const mapDispatchtoProps = (dispatch) => ({
     setFilter: (updatedFilter) => dispatch(setFilter(updatedFilter))
 });
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(CoinListFilter);
+const CoinListFilter = connect(mapStatetoProps, mapDispatchtoProps)(_CoinListFilter);
+export { CoinListFilter };

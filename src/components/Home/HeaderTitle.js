@@ -4,12 +4,12 @@ import { Text } from 'react-native-elements';
 import { FontAwesome5 } from '@expo/vector-icons'
 
 // FontAwesome5
-const Header = () => (
+const Title = () => (
   <View style={styles.headerContainer} >
     <View>
       <FontAwesome5 raise name='coins' color='#ffbf00' size={24} />
     </View>
-    <Text h4 style={styles.headerText} >Coin Tracker</Text>
+    <Text style={styles.headerText} >Coin Tracker</Text>
   </View>
   
 );
@@ -21,12 +21,13 @@ const styles = {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: 5,
   },
   headerText: {
     marginLeft: 5,
     color: 'white',
+    fontSize: 18,
+    fontWeight: '600',
   }
 }
 
-export default Header;
+export default Title;

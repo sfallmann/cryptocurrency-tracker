@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { ListItem } from 'react-native-elements';
-import icons from '../../assets/images/icons/128';
+import icons from '../../../assets/images/icons/128';
 
 
 const CoinListItem = ({ item }) => {

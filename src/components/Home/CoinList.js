@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { FlatList, Text } from 'react-native';
 import CoinListItem from './CoinListItem';
-import * as actions from '../store/actions/creator';
+import * as actions from '../../store/actions/creator';
 
 // const priceSortedList = () => coinlist.sort((a, b) => {
 //     const aVal = Number.parseFloat(a.priceUsd);
@@ -10,7 +10,7 @@ import * as actions from '../store/actions/creator';
 //     return bVal - aVal;
 //   });
 
-class CoinList extends Component {
+class _CoinList extends Component {
   // constructor(props) {
   //   super(props);
   //   this.keyExtractor = this.keyExtractor.bind(this);
@@ -90,5 +90,6 @@ const mapStateToProps =
 // };
 
 const mapDispatchToProps = dispatch => ({ fetchCoins: () => dispatch(actions.fetchCoins()) });
+const CoinList = connect(mapStateToProps, mapDispatchToProps)(_CoinList);
 
-export default connect(mapStateToProps, mapDispatchToProps)(CoinList);
+export { CoinList };
