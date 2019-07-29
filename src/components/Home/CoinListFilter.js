@@ -22,8 +22,8 @@ const BaseCoinListFilter = (props) => {
 };
 
 const mapStateToProps = (state) => ({
-    filter: state.filter,
-    isFilterShowing: state.isFilterShowing,
+    filter: state.coinlist.filter,
+    isFilterShowing: state.coinlist.isFilterShowing,
 });
 
 const mapDispatchToProps = (dispatch) => ({

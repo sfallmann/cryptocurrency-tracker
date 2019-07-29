@@ -11,7 +11,7 @@ const CoinListToolbar = (props) => (
       >
         <Feather
           name='filter'
-          color={props.filter ? 'lightgreen' : 'white' } 
+          color={props.filter ? 'lightgreen' : 'white'} 
           size={35} 
         />
       </TouchableOpacity>
@@ -34,8 +34,8 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-  isFilterShowing: state.isFilterShowing,
-  filter: state.filter,
+  isFilterShowing: state.coinlist.isFilterShowing,
+  filter: state.coinlist.filter,
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -16,12 +16,12 @@ import * as api from '../../api';
 
 export const fetchHasError = (hasErrored) => ({
     type: types.ITEMS_HAS_ERRORED,
-    hasErrored
+    payload: hasErrored,
 });
 
 export const isLoadingData = (isLoading) => ({
     type: types.ITEMS_IS_LOADING,
-    isLoading
+    payload: isLoading,
 });
 
 export const toggleFilterVisibility = () => ({
@@ -30,12 +30,12 @@ export const toggleFilterVisibility = () => ({
 
 export const setFetchedList = (list) => ({
     type: types.ITEMS_FETCH_DATA_SUCCESS,
-    list
+    payload: list,
 });
 
 export const setFilter = (filter) => ({
     type: types.SET_FILTER,
-    filter
+    payload: filter,
 });
 
 /* Thunk Action creator */

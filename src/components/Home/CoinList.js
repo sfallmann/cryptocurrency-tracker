@@ -82,7 +82,7 @@ class BaseCoinList extends Component {
   };
 }; */
 const mapStateToProps = 
-  ({ list, hasError, isLoading, filter }) => ({ list, hasError, isLoading, filter });
+  ({ coinlist: { list, hasError, isLoading, filter } }) => ({ list, hasError, isLoading, filter });
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
