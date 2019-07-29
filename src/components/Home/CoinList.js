@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FlatList, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import CoinListItem from './CoinListItem';
+import NoCoins from './NoCoins';
 import * as actions from '../../store/actions/creator';
 
 // const priceSortedList = () => coinlist.sort((a, b) => {
@@ -56,7 +57,7 @@ class _CoinList extends Component {
       );      
     }
     
-    return <Text>No items to display</Text>;
+    return <NoCoins />;
   }
 
   render() {

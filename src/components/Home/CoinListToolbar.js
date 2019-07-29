@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialIcons, Feather } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { toggleFilterVisibility } from '../../store/actions/creator';
@@ -8,13 +8,21 @@ const CoinListToolbar = (props) => {
 
   return (
     <View style={styles.toolbarContainer}>
-      <Feather
-        name='filter'
-        color={props.isFilterShowing ? 'lightgreen' : 'white' } 
-        size={32} 
-        onPress={props.toggleFilter}/>
-      <MaterialIcons name='sort' color='white' size={24}/>
-      <Feather name='user' color='white' size={24} />
+      <TouchableOpacity
+        onPress={props.toggleFilter}
+      >
+        <Feather
+          name='filter'
+          color={props.filter ? 'lightgreen' : 'white' } 
+          size={35} 
+        />
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <MaterialIcons name='sort' color='white' size={35}/>
+      </TouchableOpacity>
+      <TouchableOpacity>
+        <Feather name='user' color='white' size={35} />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -23,14 +31,14 @@ const styles = StyleSheet.create({
   toolbarContainer: {
     flex: 1,
     flexDirection: 'row',
-    width: 100,
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent:  'space-evenly'
   }
 });
 
 const mapStatetoProps = (state) => ({
   isFilterShowing: state.isFilterShowing,
+  filter: state.filter,
 });
 
 const mapDispatchtoProps = (dispatch, ownProps) => ({
