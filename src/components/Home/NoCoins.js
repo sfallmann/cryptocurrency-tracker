@@ -20,6 +20,6 @@ const styles = {
     fontSize: 24,
     fontWeight: '600',
   }
-}
+};
 
 export default NoCoins;

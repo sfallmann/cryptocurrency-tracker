@@ -11,7 +11,7 @@ import * as actions from '../../store/actions/creator';
 //     return bVal - aVal;
 //   });
 
-class _CoinList extends Component {
+class BaseCoinList extends Component {
   // constructor(props) {
   //   super(props);
   //   this.keyExtractor = this.keyExtractor.bind(this);
@@ -91,6 +91,6 @@ const mapStateToProps =
 // };
 
 const mapDispatchToProps = dispatch => ({ fetchCoins: () => dispatch(actions.fetchCoins()) });
-const CoinList = connect(mapStateToProps, mapDispatchToProps)(_CoinList);
+const CoinList = connect(mapStateToProps, mapDispatchToProps)(BaseCoinList);
 
 export { CoinList };

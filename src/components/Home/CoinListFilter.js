@@ -1,43 +1,34 @@
 import React from 'react';
-import { Input, SearchBar } from 'react-native-elements';
+import { Platform } from 'react-native';
+import { SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { setFilter } from '../../store/actions/creator';
- 
-const _CoinListFilter = (props) => 
-  props.isFilterShowing
-    ? (<SearchBar
+
+
+const BaseCoinListFilter = (props) => { 
+  const { isFilterShowing } = props;
+
+  if (isFilterShowing) {
+    return (
+      <SearchBar
         placeholder='Enter filter value' 
         value={props.filter}
         onChangeText={props.setFilter}
         searchIcon={{ type: 'feather', name: 'filter' }}
-    />)
-    : null;
-
-
-const styles = {
-  container: {
-    backgroundColor: '#2089dc',
-    padding: 10,
-  },
-  inputContainer: {
-    borderWidth: 1,
-    padding: 5,
-    borderRadius: 4,
-    backgroundColor: 'white',
-  },
-  leftIconContainer: {
-    marginRight: 15,
+      />
+    );
   }
-}
+  return null;
+};
 
-const mapStatetoProps = (state) => ({
+const mapStateToProps = (state) => ({
     filter: state.filter,
     isFilterShowing: state.isFilterShowing,
 });
 
-const mapDispatchtoProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => ({
     setFilter: (updatedFilter) => dispatch(setFilter(updatedFilter))
 });
 
-const CoinListFilter = connect(mapStatetoProps, mapDispatchtoProps)(_CoinListFilter);
+const CoinListFilter = connect(mapStateToProps, mapDispatchToProps)(BaseCoinListFilter);
 export { CoinListFilter };

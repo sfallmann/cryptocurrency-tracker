@@ -1,7 +1,7 @@
 import React from 'react';
 import { View } from 'react-native';
 import { Text } from 'react-native-elements';
-import { FontAwesome5 } from '@expo/vector-icons'
+import { FontAwesome5 } from '@expo/vector-icons';
 
 // FontAwesome5
 const Title = () => (
@@ -28,6 +28,6 @@ const styles = {
     fontSize: 18,
     fontWeight: '600',
   }
-}
+};
 
 export default Title;

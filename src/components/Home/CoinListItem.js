@@ -5,7 +5,6 @@ import icons from '../../../assets/images/icons/128';
 
 
 const CoinListItem = ({ item }) => {
-
   const [isFavorite, toggleFavorite] = useState(false);
 
   const formatPrice = (priceStr) => {
@@ -15,11 +14,11 @@ const CoinListItem = ({ item }) => {
   
     price = (Math.round(price * 1000)) / 1000;
     return price.toFixed(3);
-  }
+  };
 
   const changeFavoriteStatus = () => {
-    toggleFavorite(!isFavorite)
-  }
+    toggleFavorite(!isFavorite);
+  };
 
   return (
     <TouchableOpacity>
@@ -38,13 +37,13 @@ const CoinListItem = ({ item }) => {
       />
     </TouchableOpacity>
   );
-}
+};
 
-const styles={
+const styles = {
   container: {
     borderBottomWidth: 2,
     borderBottomColor: 'lightgrey',
   }
-}
+};
 
 export default React.memo(CoinListItem);

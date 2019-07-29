@@ -19,16 +19,14 @@ export const fetchHasError = (hasErrored) => ({
     hasErrored
 });
 
-export const isloadingData = (isLoading) => ({
+export const isLoadingData = (isLoading) => ({
     type: types.ITEMS_IS_LOADING,
     isLoading
 });
 
-export const toggleFilterVisibility = () => {
-  return  {
+export const toggleFilterVisibility = () => ({
     type: types.FILTER_IS_SHOWING
-  }
-};
+  });
 
 export const setFetchedList = (list) => ({
     type: types.ITEMS_FETCH_DATA_SUCCESS,
@@ -37,19 +35,19 @@ export const setFetchedList = (list) => ({
 
 export const setFilter = (filter) => ({
     type: types.SET_FILTER,
-    filter: filter
+    filter
 });
 
 /* Thunk Action creator */
 export const fetchCoins = () => async (dispatch) => {
         dispatch(fetchHasError(false));
         try {
-            dispatch(isloadingData(true));
+            dispatch(isLoadingData(true));
             const result = await api.fetchCoins();
             dispatch(setFetchedList(result.data.data));
         } catch (err) {
             dispatch(fetchHasError(true));
         } finally {
-            dispatch(isloadingData(false));
+            dispatch(isLoadingData(false));
         }
     };

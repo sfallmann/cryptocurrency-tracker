@@ -9,7 +9,7 @@ export function fetchHasError(state = false, action) {
     }
 }
 
-export function isloadingData(state = false, action) {
+export function isLoadingData(state = false, action) {
     switch (action.type) {
         case types.ITEMS_IS_LOADING:
             return action.isLoading;

@@ -4,9 +4,7 @@ import { MaterialIcons, Feather } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { toggleFilterVisibility } from '../../store/actions/creator';
 
-const CoinListToolbar = (props) => {
-
-  return (
+const CoinListToolbar = (props) => (
     <View style={styles.toolbarContainer}>
       <TouchableOpacity
         onPress={props.toggleFilter}
@@ -18,32 +16,31 @@ const CoinListToolbar = (props) => {
         />
       </TouchableOpacity>
       <TouchableOpacity>
-        <MaterialIcons name='sort' color='white' size={35}/>
+        <MaterialIcons name='sort' color='white' size={35} />
       </TouchableOpacity>
       <TouchableOpacity>
         <Feather name='user' color='white' size={35} />
       </TouchableOpacity>
     </View>
   );
-}
 
 const styles = StyleSheet.create({
   toolbarContainer: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent:  'space-evenly'
+    justifyContent: 'space-evenly'
   }
 });
 
-const mapStatetoProps = (state) => ({
+const mapStateToProps = (state) => ({
   isFilterShowing: state.isFilterShowing,
   filter: state.filter,
 });
 
-const mapDispatchtoProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
   toggleFilter: () => dispatch(toggleFilterVisibility())
 });
 
 
-export default connect(mapStatetoProps, mapDispatchtoProps)(CoinListToolbar);
+export default connect(mapStateToProps, mapDispatchToProps)(CoinListToolbar);
