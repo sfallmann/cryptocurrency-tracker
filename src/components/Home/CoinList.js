@@ -44,24 +44,15 @@ class BaseCoinList extends Component {
 
   renderItem = ({ item }) => (<CoinListItem item={item} />)
 
-  renderList() {
-    const filteredList = this.filteredList();
-
-    if (filteredList.length) {
-      return (
-        <FlatList
-            keyExtractor={this.keyExtractor}
-            data={filteredList} // data={this.props.list} 
-            renderItem={this.renderItem}
-        />
-      );      
-    }
-    
-    return <NoCoins />;
-  }
-
   render() {
-    return this.renderList();
+    return (
+      <FlatList
+        keyExtractor={this.keyExtractor}
+        data={this.filteredList()} // data={this.props.list} 
+        renderItem={this.renderItem}
+        ListEmptyComponent={<NoCoins />}
+      />      
+    );
   }
 /*   render() {
     return (
