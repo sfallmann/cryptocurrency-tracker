@@ -11,21 +11,22 @@ const BaseCoinListToolbar = (props) => (
       >
         <Feather
           name='filter'
-          color={props.filter ? 'lightgreen' : 'black'} 
+          color={props.filter ? 'lightgreen' : 'white'} 
           size={24} 
         />
       </TouchableOpacity>
       <TouchableOpacity>
-        <MaterialIcons name='sort' color='black' size={24} />
+        <MaterialIcons name='sort' color='white' size={24} />
       </TouchableOpacity>
       <TouchableOpacity>
-        <Feather name='user' color='black' size={24} />
+        <Feather name='user' color='white' size={24} />
       </TouchableOpacity>
     </View>
   );
 
 const styles = StyleSheet.create({
   toolbarContainer: {
+    backgroundColor: 'black',
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',

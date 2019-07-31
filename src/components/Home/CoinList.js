@@ -22,7 +22,7 @@ class BaseCoinList extends Component {
   }
 
   height = Dimensions.get('window').height;
-
+  mockFavorites = ['BTC', 'ETH', 'TOMO'];
   /*   
     filteredList() {
       return this.props.list.filter((item) => {
@@ -45,7 +45,11 @@ class BaseCoinList extends Component {
   
   keyExtractor = (item) => item.id.toString()
 
-  renderItem = ({ item }) => (<CoinListItem item={item} />)
+  renderItem = ({ item }) => {
+    const favorite = this.mockFavorites.includes(item.symbol);
+
+    return (<CoinListItem item={item} favorite={favorite} />);
+  }
 
   render() {
     return (

@@ -4,8 +4,9 @@ import { ListItem } from 'react-native-elements';
 import icons from '../../../assets/images/icons/128';
 
 
-const CoinListItem = ({ item }) => {
-  const [isFavorite, toggleFavorite] = useState(false);
+const CoinListItem = (props) => {
+  const { item, favorite } = props;
+  const [isFavorite, toggleFavorite] = useState(favorite);
 
   const formatPrice = (priceStr) => {
     let price = Number.parseFloat(priceStr);
@@ -23,7 +24,7 @@ const CoinListItem = ({ item }) => {
   return (
     <TouchableOpacity>
       <ListItem
-        title={item.name}
+        title={`${item.name} - ${item.symbol}`}
         subtitle={`Price: $ ${formatPrice(item.priceUsd)}`}
         leftAvatar={{ source: icons[item.symbol.toLowerCase()] }}
         containerStyle={styles.container}
