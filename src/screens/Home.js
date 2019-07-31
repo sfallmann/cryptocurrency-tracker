@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
-import { CoinList, CoinListFilter, CoinListHeader } from '../components/Home';
+import { CoinList, CoinListFilter, CoinListHeader, CoinListToolbar } from '../components/Home';
 
 export default function Home() {
   return (
@@ -8,14 +8,15 @@ export default function Home() {
       <CoinListHeader />
       <CoinListFilter />
       <CoinList />
+      <CoinListToolbar />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 25,
     flex: 1,
     backgroundColor: '#fff',
+    position: 'relative',
   }
 });

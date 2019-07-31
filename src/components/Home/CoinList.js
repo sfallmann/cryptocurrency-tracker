@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FlatList } from 'react-native';
+import { FlatList, Dimensions } from 'react-native';
 import CoinListItem from './CoinListItem';
 import NoCoins from './NoCoins';
 import * as actions from '../../store/actions/creator';
@@ -16,17 +16,20 @@ class BaseCoinList extends Component {
   //   super(props);
   //   this.keyExtractor = this.keyExtractor.bind(this);
   // }
-
   // keyExtractor(item) { return item.id.toString(); }  
   componentDidMount() {
     this.props.fetchCoins();
   }
 
-/*   filteredList() {
-    return this.props.list.filter((item) => {
-      return item.name.indexOf(this.props.filter) >= 0;
-    });
-  } */
+  height = Dimensions.get('window').height;
+
+  /*   
+    filteredList() {
+      return this.props.list.filter((item) => {
+        return item.name.indexOf(this.props.filter) >= 0;
+      });
+    } 
+  */
 
   sortFn(a, b) {
     const aPrice = Number.parseFloat(a.priceUsd);
@@ -47,6 +50,7 @@ class BaseCoinList extends Component {
   render() {
     return (
       <FlatList
+        style={{ height: this.height - 100 }}
         keyExtractor={this.keyExtractor}
         data={this.filteredList()} // data={this.props.list} 
         renderItem={this.renderItem}

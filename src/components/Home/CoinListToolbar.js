@@ -1,25 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { MaterialIcons, Feather } from '@expo/vector-icons';
 import { connect } from 'react-redux';
 import { toggleFilterVisibility } from '../../store/actions/creator';
 
-const CoinListToolbar = (props) => (
+const BaseCoinListToolbar = (props) => (
     <View style={styles.toolbarContainer}>
       <TouchableOpacity
         onPress={props.toggleFilter}
       >
         <Feather
           name='filter'
-          color={props.filter ? 'lightgreen' : 'white'} 
-          size={35} 
+          color={props.filter ? 'lightgreen' : 'black'} 
+          size={24} 
         />
       </TouchableOpacity>
       <TouchableOpacity>
-        <MaterialIcons name='sort' color='white' size={35} />
+        <MaterialIcons name='sort' color='black' size={24} />
       </TouchableOpacity>
       <TouchableOpacity>
-        <Feather name='user' color='white' size={35} />
+        <Feather name='user' color='black' size={24} />
       </TouchableOpacity>
     </View>
   );
@@ -33,9 +33,9 @@ const styles = StyleSheet.create({
   }
 });
 
-const mapStateToProps = (state) => ({
-  isFilterShowing: state.coinlist.isFilterShowing,
-  filter: state.coinlist.filter,
+const mapStateToProps = ({ coinlist: { isFilterShowing, filter } }) => ({
+  isFilterShowing,
+  filter,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -43,4 +43,5 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CoinListToolbar);
+const CoinListToolbar = connect(mapStateToProps, mapDispatchToProps)(BaseCoinListToolbar);
+export { CoinListToolbar };

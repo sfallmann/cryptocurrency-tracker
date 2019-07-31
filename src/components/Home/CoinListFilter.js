@@ -1,5 +1,4 @@
 import React from 'react';
-import { Platform } from 'react-native';
 import { SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { setFilter } from '../../store/actions/creator';
@@ -11,6 +10,7 @@ const BaseCoinListFilter = (props) => {
   if (isFilterShowing) {
     return (
       <SearchBar
+        containerStyle={styles.containerStyle}
         placeholder='Enter filter value' 
         value={props.filter}
         onChangeText={props.setFilter}
@@ -21,9 +21,18 @@ const BaseCoinListFilter = (props) => {
   return null;
 };
 
-const mapStateToProps = (state) => ({
-    filter: state.coinlist.filter,
-    isFilterShowing: state.coinlist.isFilterShowing,
+const styles = {
+  containerStyle: {
+    position: 'absolute',
+    width: '100%',
+    bottom: 45,
+    zIndex: 10,
+  }
+};
+
+const mapStateToProps = ({ coinlist: { filter, isFilterShowing } }) => ({
+    filter,
+    isFilterShowing,
 });
 
 const mapDispatchToProps = (dispatch) => ({
