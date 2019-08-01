@@ -30,7 +30,9 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-evenly'
+    justifyContent: 'space-evenly',
+    paddingTop: 5,
+    paddingBottom: 5 
   }
 });
 

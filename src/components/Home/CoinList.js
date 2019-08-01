@@ -21,7 +21,12 @@ class BaseCoinList extends Component {
     this.props.fetchCoins();
   }
 
-  height = Dimensions.get('window').height;
+  screenHeight = Dimensions.get('screen').height;
+  
+  height() {
+        return this.screenHeight - (this.screenHeight * 0.2);
+  }
+
   mockFavorites = ['BTC', 'ETH', 'TOMO'];
   /*   
     filteredList() {
@@ -54,7 +59,7 @@ class BaseCoinList extends Component {
   render() {
     return (
       <FlatList
-        style={{ height: this.height - 100 }}
+        style={{ height: this.height() }}
         keyExtractor={this.keyExtractor}
         data={this.filteredList()} // data={this.props.list} 
         renderItem={this.renderItem}
