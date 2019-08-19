@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { FlatList, Text } from 'react-native';
+import { FlatList, Dimensions } from 'react-native';
 import CoinListItem from './CoinListItem';
-//import coinlist from './list';
-import * as actions from '../store/actions/creator';
+import NoCoins from './NoCoins';
+import * as actions from '../../store/actions/creator';
 
 // const priceSortedList = () => coinlist.sort((a, b) => {
 //     const aVal = Number.parseFloat(a.priceUsd);
@@ -11,49 +11,61 @@ import * as actions from '../store/actions/creator';
 //     return bVal - aVal;
 //   });
 
-class CoinList extends Component {
+class BaseCoinList extends Component {
   // constructor(props) {
   //   super(props);
   //   this.keyExtractor = this.keyExtractor.bind(this);
   // }
-
   // keyExtractor(item) { return item.id.toString(); }  
   componentDidMount() {
     this.props.fetchCoins();
   }
 
-/*   filteredList() {
-    return this.props.list.filter((item) => {
-      return item.name.indexOf(this.props.filter) >= 0;
-    });
-  } */
+  screenHeight = Dimensions.get('screen').height;
+  
+  height() {
+        return this.screenHeight - (this.screenHeight * 0.2);
+  }
+
+  mockFavorites = ['BTC', 'ETH', 'TOMO'];
+  /*   
+    filteredList() {
+      return this.props.list.filter((item) => {
+        return item.name.indexOf(this.props.filter) >= 0;
+      });
+    } 
+  */
+
+  sortFn(a, b) {
+    const aPrice = Number.parseFloat(a.priceUsd);
+    const bPrice = Number.parseFloat(b.priceUsd);
+
+    return bPrice - aPrice;
+  }
+
   filteredList() {
     const filterFn = item => item.name.toLowerCase().includes(this.props.filter.toLowerCase());
-    return this.props.list.filter(filterFn);
+    return this.props.list.filter(filterFn).sort(this.sortFn);
   }
   
   keyExtractor = (item) => item.id.toString()
 
-  renderItem = ({ item }) => (<CoinListItem item={item} />)
+  renderItem = ({ item }) => {
+    const favorite = this.mockFavorites.includes(item.symbol);
 
-  renderList() {
-    const filteredList = this.filteredList();
-
-    if (filteredList.length) {
-      return (
-        <FlatList
-            keyExtractor={this.keyExtractor}
-            data={filteredList} // data={this.props.list} 
-            renderItem={this.renderItem}
-        />
-      );      
-    }
-    
-    return <Text>No items to display</Text>;
+    return (<CoinListItem item={item} favorite={favorite} />);
   }
 
   render() {
-    return this.renderList();
+    return (
+      <FlatList
+        style={{ height: this.height() }}
+        keyExtractor={this.keyExtractor}
+        data={this.filteredList()} // data={this.props.list} 
+        renderItem={this.renderItem}
+        ListEmptyComponent={<NoCoins />}
+      />      
+    );
   }
 /*   render() {
     return (
@@ -74,7 +86,7 @@ class CoinList extends Component {
   };
 }; */
 const mapStateToProps = 
-  ({ list, hasError, isLoading, filter }) => ({ list, hasError, isLoading, filter });
+  ({ coinlist: { list, hasError, isLoading, filter } }) => ({ list, hasError, isLoading, filter });
 
 // const mapDispatchToProps = (dispatch) => {
 //   return {
@@ -83,5 +95,6 @@ const mapStateToProps =
 // };
 
 const mapDispatchToProps = dispatch => ({ fetchCoins: () => dispatch(actions.fetchCoins()) });
+const CoinList = connect(mapStateToProps, mapDispatchToProps)(BaseCoinList);
 
-export default connect(mapStateToProps, mapDispatchToProps)(CoinList);
+export { CoinList };

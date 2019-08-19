@@ -16,34 +16,38 @@ import * as api from '../../api';
 
 export const fetchHasError = (hasErrored) => ({
     type: types.ITEMS_HAS_ERRORED,
-    hasErrored
+    payload: hasErrored,
 });
 
-export const isloadingData = (isLoading) => ({
+export const isLoadingData = (isLoading) => ({
     type: types.ITEMS_IS_LOADING,
-    isLoading
+    payload: isLoading,
 });
+
+export const toggleFilterVisibility = () => ({
+    type: types.FILTER_IS_SHOWING
+  });
 
 export const setFetchedList = (list) => ({
     type: types.ITEMS_FETCH_DATA_SUCCESS,
-    list
+    payload: list,
 });
 
 export const setFilter = (filter) => ({
     type: types.SET_FILTER,
-    filter: filter
+    payload: filter,
 });
 
 /* Thunk Action creator */
 export const fetchCoins = () => async (dispatch) => {
         dispatch(fetchHasError(false));
         try {
-            dispatch(isloadingData(true));
+            dispatch(isLoadingData(true));
             const result = await api.fetchCoins();
             dispatch(setFetchedList(result.data.data));
         } catch (err) {
             dispatch(fetchHasError(true));
         } finally {
-            dispatch(isloadingData(false));
+            dispatch(isLoadingData(false));
         }
     };

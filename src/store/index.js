@@ -1,16 +1,10 @@
-import { combineReducers, createStore, applyMiddleware } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { fetchHasError, isloadingData, setFetchedList, setFilterInput } from '../store/reducers';
-
-
-const rootReducer = combineReducers({
-    list: setFetchedList,
-    hasError: fetchHasError,
-    isLoading: isloadingData,
-    filter: setFilterInput
-});
+import rootReducer from './reducers';
+import initialState from './state';
 
 export default createStore(
-    rootReducer,
-    applyMiddleware(thunk)
+  rootReducer,
+  initialState,
+  applyMiddleware(thunk)
 );
